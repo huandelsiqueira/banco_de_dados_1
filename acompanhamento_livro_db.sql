@@ -51,8 +51,54 @@ CREATE TABLE COMIDA_FAVORITA (
 SELECT * FROM COMIDA_FAVORITA;
 
 INSERT INTO PESSOA (ID_PESSOA, NOME, SOBRENOME, GENERO, DT_NASCIM, RUA, CIDADE, ESTADO, PAIS, CODIGO_POSTAL)
-					VALUES (1, 'Huandel', 'Siqueira', 'M', '2001-08-01', 'Prof. Felisberto', 'Pelotas', 'Rio Grande do Sul', 'Brasil', '96045160'),
-						   (2, 'William', 'Turner', 'M', '1972-05-27', NULL, NULL, NULL, NULL, NULL);
+					VALUES	(1, 'Huandel', 'Siqueira', 'M', '2001-08-01', 'Prof. Felisberto', 'Pelotas', 'Rio Grande do Sul', 'Brasil', '96045160'),
+						  	(2, 'William', 'Turner', 'M', '1972-05-27', NULL, NULL, NULL, NULL, NULL);
 						   
 SELECT * FROM PESSOA;
+
+INSERT INTO COMIDA_FAVORITA (ID_PESSOA, COMIDA)
+							VALUES 	(1, 'Cachorro quente'),
+									(1, 'Churrasco'),
+									(2, 'Pizza');
+									
+SELECT * FROM COMIDA_FAVORITA;
+
+SELECT COMIDA
+FROM COMIDA_FAVORITA
+WHERE ID_PESSOA = 1
+ORDER BY COMIDA;
+
+INSERT INTO PESSOA (ID_PESSOA, NOME, SOBRENOME, GENERO, DT_NASCIM, RUA, CIDADE, ESTADO, PAIS, CODIGO_POSTAL)
+			VALUES	(3, 'Susan', 'Smith', 'F', '1975-11-02', '23 Maple St.', 'Arlington', 'VA', 'USA', '20220');
+			
+SELECT * FROM PESSOA;
+
+--> Comando de atualização de dados dentro de uma tabela:
+
+UPDATE PESSOA 
+SET RUA = '1225 Tremont St.',
+	CIDADE = 'Boston',
+	ESTADO = 'MA',
+	PAIS = 'USA',
+	CODIGO_POSTAL = '02138'
+WHERE ID_PESSOA = 2;
+
+SELECT * 
+FROM PESSOA 
+ORDER BY ID_PESSOA;
+
+--> Importante ao inserir dados. Formato: 'AAAA-MM-DD'
+
+SELECT NOME, SOBRENOME, GENERO
+FROM PESSOA
+WHERE NOME = 'Huandel';
+
+SELECT NOME, SOBRENOME, GENERO
+FROM PESSOA
+WHERE GENERO = 'M';
+
+SELECT P.NOME, P.SOBRENOME, P.GENERO, C.COMIDA
+FROM PESSOA P
+INNER JOIN COMIDA_FAVORITA C
+ON P.ID_PESSOA = C.ID_PESSOA;
 
