@@ -100,5 +100,31 @@ WHERE GENERO = 'M';
 SELECT P.NOME, P.SOBRENOME, P.GENERO, C.COMIDA
 FROM PESSOA P
 INNER JOIN COMIDA_FAVORITA C
-ON P.ID_PESSOA = C.ID_PESSOA;
+ON P.ID_PESSOA = C.ID_PESSOA; --> "P" e "C" são caracterizados como "ALIASES DE TABELA". Poderiam ser com os nomes das tabelas também, por exemplo: "PESSOA.GENERO".
 
+SELECT ID_PESSOA, NOME,
+		'ACTIVE' AS ACTIVE,
+		ID_PESSOA * 3.14159,
+		UPPER(NOME)
+FROM PESSOA;
+
+SELECT DISTINCT ID_PESSOA 
+FROM COMIDA_FAVORITA; --> O comando "DISTINCT" exclui da consulta dados repetidos.
+
+--> "VIEW" é uma consulta armazenada no dicionário de dados. Nesse conjunto entram as "Tabelas Virtuais".
+
+CREATE VIEW LISTA_DE_PESSOAS AS
+SELECT ID_PESSOA, NOME, GENERO
+FROM PESSOA;
+
+--> Chamando uma "VIEW" através do comando "SELECT".
+
+SELECT * FROM LISTA_DE_PESSOAS;
+
+SELECT * FROM LISTA_DE_PESSOAS
+ORDER BY ID_PESSOA;
+
+--> O comando "ORDER BY" ordena a tabela (na ordem crescente se nada for declarado). Para a ordem decrescente, adiciona "DESC" ao final do "ORDER BY".
+
+SELECT * FROM PESSOA
+ORDER BY ID_PESSOA DESC;
